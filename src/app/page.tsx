@@ -10,12 +10,12 @@ export default function Home() {
   }>();
 
   useEffect(() => {
-    const fetchData = async() => {
-      if(!input) return setSearchResults(undefined);
-      const res = await fetch( `/api/search?q=${input}`);
-    }
+    const fetchData = async () => {
+      if (!input) return setSearchResults(undefined);
+      const res = await fetch(`/api/search?q=${input}`);
+    };
     fetchData();
-  },[input])
+  }, [input]);
 
   return (
     <div>
@@ -23,6 +23,7 @@ export default function Home() {
         value={input}
         type="text"
         onChange={(e) => setInput(e.target.value)}
+        className="text-zinc-900"
       />
     </div>
   );
