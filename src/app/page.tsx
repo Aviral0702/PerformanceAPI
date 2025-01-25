@@ -1,4 +1,12 @@
 "use client";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -13,6 +21,11 @@ export default function Home() {
     const fetchData = async () => {
       if (!input) return setSearchResults(undefined);
       const res = await fetch(`/api/search?q=${input}`);
+      const data = (await res.json()) as {
+        results: string[];
+        duration: number;
+      };
+      setSearchResults(data);
     };
     fetchData();
   }, [input]);
@@ -25,12 +38,31 @@ export default function Home() {
           A high-performance API built with Hono, Next.js and Cloudflare. <br />{" "}
           Type a query below and get your results in miliseconds.
         </p>
-        <input
-          value={input}
-          type="text"
-          onChange={(e) => setInput(e.target.value)}
-          className="text-zinc-900"
-        />
+
+        <div className="max-w-md w-full">
+          <Command>
+            <CommandInput
+              value={input}
+              onValueChange={setInput}
+              placeholder="Search for Countries..."
+              className="placeholder:text-zinc-500"
+            />
+            <CommandList>
+              {searchResults?.results.length === 0 ? (
+                <CommandEmpty>NO RESULTS FOUND.</CommandEmpty>
+              ) : null}
+              {searchResults?.results ? (
+                <CommandGroup heading="Results">
+                  {searchResults?.results.map((result, i) => (
+                    <CommandItem key={i} value={result} onSelect={setInput}>
+                      {result}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              ) : null}
+            </CommandList>
+          </Command>
+        </div>
       </div>
     </main>
   );
