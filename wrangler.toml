@@ -1,6 +1,8 @@
 name = "performanceapi"
-compatibility_date = "2025-02-07"
+compatibility_date = "2025-01-25"
 
 [vars]
 UPSTASH_REDIS_REST_URL = "https://cuddly-pony-37754.upstash.io" 
 UPSTASH_REDIS_REST_TOKEN = "AZN6AAIjcDFhYjI1MGYxMjNjOTU0OWU0OTQ4MmIwZGIzZTcyZWEwZnAxMA"
+[observability.logs]
+enabled = true
