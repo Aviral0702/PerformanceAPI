@@ -59,3 +59,4 @@ app.get("/search", async (c) => {
 
 export const GET = handle(app); // this handle function is integration function of Vercel with Hono so we can also deploy it to Vercel and make it compatible like Next.js
 export default app as never; // this is just to make sure that the app is not exported as a default export as nextjs compiler does not like it to be exported as default export just to bypass it
+//testing for github integration
