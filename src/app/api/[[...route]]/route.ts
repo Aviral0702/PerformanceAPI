@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { handle } from "hono/vercel";
 import { cors } from "hono/cors";
 import { env } from "hono/adapter";
-import { Redis } from "@upstash/redis";
+import { Redis } from "@upstash/redis/cloudflare";
 export const runtime = "edge"; //Cloudflare Workers is the under the hood runtime of Vercel also so deploying there would be beneficial for performance
 const app = new Hono().basePath("/api"); //now no need to worry about the base path of the app for every single route we are defining it here
 
